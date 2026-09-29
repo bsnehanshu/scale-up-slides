@@ -1,4 +1,4 @@
-# Scale Up session 1
+# AI features from prototype to production
 
 AWS-branded HTML deck adapted for Daniel Wirjo.
 
