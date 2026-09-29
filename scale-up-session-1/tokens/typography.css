@@ -1,0 +1,142 @@
+/* =============================================================
+   AWS Design System — Typography
+   Amazon Ember Display is primary; Regular (400) is the default for
+   headlines AND body — AWS is moving AWAY from bold.
+   Amazon Ember Mono appears sparingly for personality — eyebrows,
+   captions, tags, "builder roots" expressive moments.
+
+   Never: Ember Modern, ligatures, all-caps/bold headlines,
+   center- or right-aligned body copy.
+   Leading: 110–120% headlines, 120–140% body (130% "just right").
+   Tracking: 0 start; never below -25 or above +100.
+   ============================================================= */
+
+:root {
+  --aws-font-display: "Amazon Ember Display", "Amazon Ember", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --aws-font-mono:    "Amazon Ember Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* font sizes — flexible; adjust per layout per docs */
+  --aws-fs-eyebrow:  13px;
+  --aws-fs-caption:  12px;
+  --aws-fs-tag:      12px;
+  --aws-fs-body-sm:  14px;
+  --aws-fs-body:     16px;
+  --aws-fs-body-lg:  20px;
+  --aws-fs-subhead:  28px;
+  --aws-fs-h3:       36px;
+  --aws-fs-h2:       55px;
+  --aws-fs-h1:       96px;
+  --aws-fs-display:  144px;  /* cover-scale */
+
+  /* leading */
+  --aws-lh-headline:       1.10; /* @kind other */
+  --aws-lh-headline-loose: 1.20; /* @kind other */
+  --aws-lh-body:           1.30; /* @kind other */
+
+  /* tracking */
+  --aws-ls-eyebrow: 0.06em;
+  --aws-ls-caption: 0.08em;
+  --aws-ls-tag:     0.05em;
+}
+
+/* ---------- Type ramp utility classes ---------- */
+.aws-eyebrow {
+  font-family: var(--aws-font-mono);
+  font-weight: 400;
+  font-size: var(--aws-fs-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--aws-ls-eyebrow);
+  color: var(--aws-fg);
+  font-feature-settings: "kern" 1;
+}
+.aws-h1 {
+  font-family: var(--aws-font-display);
+  font-weight: 400;        /* moving away from bold in headlines */
+  font-size: var(--aws-fs-h1);
+  line-height: var(--aws-lh-headline);
+  letter-spacing: -0.01em;
+  color: var(--aws-fg);
+  text-wrap: pretty;
+}
+.aws-h2 {
+  font-family: var(--aws-font-display);
+  font-weight: 400;
+  font-size: var(--aws-fs-h2);
+  line-height: var(--aws-lh-headline);
+  color: var(--aws-fg);
+  text-wrap: pretty;
+}
+.aws-h3 {
+  font-family: var(--aws-font-display);
+  font-weight: 400;
+  font-size: var(--aws-fs-h3);
+  line-height: var(--aws-lh-headline-loose);
+  color: var(--aws-fg);
+  text-wrap: pretty;
+}
+.aws-subhead {
+  font-family: var(--aws-font-display);
+  font-weight: 400;
+  font-size: var(--aws-fs-subhead);
+  line-height: var(--aws-lh-headline-loose);
+  color: var(--aws-fg);
+}
+.aws-body {
+  font-family: var(--aws-font-display);
+  font-weight: 400;
+  font-size: var(--aws-fs-body);
+  line-height: var(--aws-lh-body);
+  color: var(--aws-fg);
+}
+.aws-body-lg {
+  font-family: var(--aws-font-display);
+  font-weight: 400;
+  font-size: var(--aws-fs-body-lg);
+  line-height: var(--aws-lh-body);
+  color: var(--aws-fg);
+}
+.aws-body-sm {
+  font-family: var(--aws-font-display);
+  font-size: var(--aws-fs-body-sm);
+  line-height: var(--aws-lh-body);
+  color: var(--aws-fg);
+}
+.aws-caption {
+  font-family: var(--aws-font-mono);
+  font-weight: 400;
+  font-size: var(--aws-fs-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--aws-ls-caption);
+  color: var(--aws-fg);
+}
+.aws-tag {
+  font-family: var(--aws-font-display);
+  font-weight: 500;
+  font-size: var(--aws-fs-tag);
+  text-transform: uppercase;
+  letter-spacing: var(--aws-ls-tag);
+  color: var(--aws-fg);
+}
+.aws-cta {
+  font-family: var(--aws-font-display);
+  font-weight: 500;
+  font-size: var(--aws-fs-body);
+  color: var(--aws-fg);
+  text-decoration: none;       /* never underline */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.aws-cta:hover { color: var(--aws-blue-600); }
+.aws-link {
+  font-family: var(--aws-font-display);
+  font-weight: 400;
+  color: var(--aws-link);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.aws-link:hover { color: var(--aws-link-hover); }
+.aws-mono {
+  font-family: var(--aws-font-mono);
+  font-size: var(--aws-fs-body-sm);
+}

@@ -1,0 +1,51 @@
+:root { --bar: 52px; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; background: #111; color: #eee; }
+#toolbar {
+  height: var(--bar); display: flex; align-items: center; gap: 12px;
+  padding: 0 12px; background: #1b1b1b; border-bottom: 1px solid #333;
+}
+#toolbar .brand { font-weight: 600; }
+#toolbar .spacer { flex: 1; }
+#toolbar button, #export-menu summary {
+  background: #2a2a2a; color: #eee; border: 1px solid #3a3a3a; border-radius: 6px;
+  padding: 6px 10px; cursor: pointer; font: inherit; list-style: none;
+}
+#toolbar .modes button.active { background: #ff9900; color: #111; border-color: #ff9900; }
+#export-menu { position: relative; }
+#export-menu .export-options {
+  position: absolute; right: 0; top: 110%; display: flex; flex-direction: column; gap: 6px;
+  background: #1b1b1b; border: 1px solid #333; border-radius: 8px; padding: 8px; min-width: 180px; z-index: 20;
+}
+#stage { position: relative; height: calc(100% - var(--bar)); display: grid; place-items: center; }
+#deck-frame { width: 100%; height: 100%; border: 0; background: #000; }
+#empty-hint { position: absolute; color: #888; }
+/* selection outline drawn in the PARENT over the iframe (Task 7+).
+   position:fixed so drawSelection() can use viewport coordinates directly —
+   #stage sits below the toolbar, so an absolute overlay would be offset. */
+#sel-overlay { position: fixed; pointer-events: none; border: 2px solid #ff9900; display: none; z-index: 15; }
+body[data-dirty="true"] #toolbar .brand::after { content: " •"; color: #ff9900; }
+#style-popover {
+  position: fixed; z-index: 30; display: none; width: 420px;
+  background: #1b1b1b; border: 1px solid #3a3a3a; border-radius: 10px; padding: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+}
+#style-popover .sp-none-row { margin-bottom: 4px; }
+#style-popover .sp-none-row .sp-swatch { width: 26px; }
+#style-popover .sp-section { margin-bottom: 10px; }
+#style-popover label { display: block; font-size: 11px; color: #999; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .06em; }
+/* Colour matrix: one column per hue (spectrum order), one row per lightness
+   step. grid-template-columns is set inline to the hue count in JS. */
+#style-popover .sp-swatches { display: grid; gap: 4px; }
+#style-popover .sp-swatch { width: 100%; aspect-ratio: 1; border: 1px solid rgba(255,255,255,.15); border-radius: 3px; padding: 0; cursor: pointer; }
+#style-popover .sp-swatch:hover { outline: 2px solid #ff9900; outline-offset: 1px; }
+/* Currently-applied colour gets a persistent ring so you can find your way back. */
+#style-popover .sp-swatch.sp-current { outline: 2px solid #fff; outline-offset: 1px; box-shadow: 0 0 0 1px #000; }
+/* Transparent / no-fill chip: checkerboard with a diagonal slash. */
+#style-popover .sp-swatch-none {
+  background:
+    linear-gradient(45deg, transparent 45%, #e5484d 45%, #e5484d 55%, transparent 55%),
+    conic-gradient(#666 90deg, #999 90deg 180deg, #666 180deg 270deg, #999 270deg) 0 0 / 8px 8px;
+}
+#style-popover .sp-btn { background: #2a2a2a; color: #eee; border: 1px solid #3a3a3a; border-radius: 6px; padding: 5px 8px; margin-right: 4px; cursor: pointer; font: inherit; }
+#style-popover .sp-bgmodes { display: flex; flex-direction: column; gap: 4px; }
