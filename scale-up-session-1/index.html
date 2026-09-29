@@ -169,7 +169,10 @@
   .canvas-box { min-height: 62px; box-sizing: border-box; padding: 16px 14px; background: var(--aws-white); border: 2px solid var(--aws-gray-300); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 22px; line-height: 1.15; }
   .canvas-resources { position: absolute; right: 80px; top: 315px; width: 450px; min-height: 525px; box-sizing: border-box; padding: 34px 36px; background: var(--aws-purple-50); border-top: 7px solid var(--aws-purple-600); display: flex; flex-direction: column; gap: 22px; }
   .canvas-resources .resource-title { font-size: 38px; line-height: 1.1; }
-  .canvas-resources a { font-family: var(--aws-font-mono); font-size: 18px; line-height: 1.35; color: var(--aws-blue-600); text-decoration: none; padding-top: 16px; border-top: 2px solid var(--aws-purple-200); }
+  .canvas-resource-grid { margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .canvas-resource-item { display: flex; flex-direction: column; gap: 10px; color: var(--aws-gray-850); text-decoration: none; }
+  .canvas-resource-item img { width: 100%; aspect-ratio: 1; background: var(--aws-white); }
+  .canvas-resource-item span { font-family: var(--aws-font-mono); font-size: 14px; line-height: 1.25; text-align: center; }
   .canvas-takeaway { position: absolute; left: 80px; right: 440px; bottom: 50px; display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: center; }
   .canvas-takeaway .label { font-family: var(--aws-font-mono); font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--aws-purple-600); }
 
@@ -762,9 +765,20 @@
       <span class="eyebrow" style="color: var(--aws-purple-600);">Resources</span>
       <span class="resource-title">Use one canvas per feature</span>
       <p class="body-md muted">Start with the user problem. Put evaluation, cost, and pricing on the page from day one.</p>
-      <a href="https://github.com/aws-samples/sample-apj-sup-sa/tree/add-genai-product-canvas/agentic-workloads/genai-product-canvas">Canvas template and facilitator kit</a>
-      <a href="https://github.com/aws-samples/sample-apj-sup-sa/blob/add-genai-product-canvas/agentic-workloads/genai-product-canvas/genai-product-canvas-template.pptx">Download the canvas template</a>
-      <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/f6d1379f-3504-4c36-8a46-3b9c3c99a03d/en-US/040-part-2-design">AWS workshop design module</a>
+      <div class="canvas-resource-grid">
+        <a class="canvas-resource-item" href="https://github.com/aws-samples/sample-apj-sup-sa/tree/add-genai-product-canvas/agentic-workloads/genai-product-canvas">
+          <img src="assets/qr-genai-canvas-kit.svg" alt="QR code for the canvas facilitator kit">
+          <span>Facilitator kit</span>
+        </a>
+        <a class="canvas-resource-item" href="https://github.com/aws-samples/sample-apj-sup-sa/blob/add-genai-product-canvas/agentic-workloads/genai-product-canvas/genai-product-canvas-template.pptx">
+          <img src="assets/qr-genai-canvas-template.svg" alt="QR code to download the canvas template">
+          <span>Canvas template</span>
+        </a>
+        <a class="canvas-resource-item" href="https://catalog.us-east-1.prod.workshops.aws/workshops/f6d1379f-3504-4c36-8a46-3b9c3c99a03d/en-US/040-part-2-design">
+          <img src="assets/qr-genai-canvas-workshop.svg" alt="QR code for the AWS workshop design module">
+          <span>Workshop module</span>
+        </a>
+      </div>
     </div>
     <div class="canvas-takeaway">
       <span class="label">Output</span>
