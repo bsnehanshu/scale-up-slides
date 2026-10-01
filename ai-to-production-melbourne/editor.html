@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AWS deck editor</title>
+<link rel="stylesheet" href="./editor/editor.css">
+</head>
+<body>
+<header id="toolbar">
+  <strong class="brand">AWS deck editor</strong>
+  <div class="modes" role="tablist">
+    <button data-mode="text" class="active">Text</button>
+    <button data-mode="layout">Layout</button>
+    <button data-mode="style">Style</button>
+  </div>
+  <div class="spacer"></div>
+  <button id="dup-slide" title="Duplicate the current slide">Duplicate slide</button>
+  <button id="present-toggle">Present</button>
+  <details id="export-menu">
+    <summary>Export ▾</summary>
+    <div class="export-options">
+      <button id="export-single">Single file (.html)</button>
+      <button id="export-folder">Folder (.zip)</button>
+    </div>
+  </details>
+  <button id="open-deck">Open deck…</button>
+  <input id="deck-file" type="file" accept=".html" hidden>
+</header>
+<main id="stage">
+  <iframe id="deck-frame" title="deck"></iframe>
+  <p id="empty-hint">Open a generated deck (its <code>index.html</code>) to start editing.</p>
+</main>
+<script type="module">
+  import { setMode, editorState, modeHandlers } from './editor/editor.js';
+  import './editor/modes/text-edit.js';
+  import './editor/modes/style-popover.js';
+  import './editor/modes/layout-nudge.js';
+  import './editor/modes/slide-ops.js';
+  import './editor/freeze.js';
+  setMode('text');
+  // Re-arm the active mode after a deck finishes loading (frameDoc becomes available).
+  const frame = document.getElementById('deck-frame');
+  frame.addEventListener('load', () => {
+    // slight delay so editorState.frameDoc is set by loadDeck's own load handler
+    setTimeout(() => modeHandlers[editorState.mode]?.arm?.(), 100);
+  });
+</script>
+</body>
+</html>
