@@ -1906,6 +1906,21 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL=au.anthropic.claude-opus-5-5</pre>
     if (v) { v.currentTime = 0; v.play().catch(() => {}); }
   });
   document.querySelectorAll('.demo-video').forEach((v) => v.addEventListener('click', () => (v.paused ? v.play() : v.pause())));
+
+  // Present mode: H (or P) hides the thumbnail rail and goes full screen; H again or Esc brings the rail back.
+  const deck = document.querySelector('deck-stage');
+  document.addEventListener('keydown', (e) => {
+    if (!['h', 'H', 'p', 'P'].includes(e.key) || e.metaKey || e.ctrlKey || e.altKey) return;
+    e.preventDefault();
+    if (deck.hasAttribute('no-rail')) {
+      deck.removeAttribute('no-rail');
+      if (document.fullscreenElement) document.exitFullscreen();
+    } else {
+      deck.setAttribute('no-rail', '');
+      document.documentElement.requestFullscreen?.().catch(() => {});
+    }
+  });
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement) deck.removeAttribute('no-rail'); });
 </script>
 
 </body>
